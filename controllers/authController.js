@@ -13,7 +13,7 @@ const register = async (req, res) => {
 
     const tokenUser = createTokenUser(user)
     attachCookiesToResponse({ res, user: tokenUser })
-    res.status(StatusCodes.CREATED).json({ user: tokenUser })
+    return res.status(StatusCodes.CREATED).json({ user: tokenUser })
 }
 
 const login = async (req, res) => {
@@ -31,7 +31,7 @@ const login = async (req, res) => {
     }
     const tokenUser = createTokenUser(user)
     attachCookiesToResponse({ res, user: tokenUser })
-    res.status(StatusCodes.OK).json({ user: tokenUser })
+    return res.status(StatusCodes.OK).json({ user: tokenUser })
 }
 
 const logout = async (req, res) => {
@@ -40,7 +40,7 @@ const logout = async (req, res) => {
         httpOnly: true,
         expires: new Date(0)
     })
-    res.status(StatusCodes.OK).json({ msg: 'user logged out!' })
+    return res.status(StatusCodes.OK).json({ msg: 'user logged out!' })
 }
 
 module.exports = {
